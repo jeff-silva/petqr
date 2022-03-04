@@ -1,0 +1,211 @@
+<template>
+    <div style="position:relative;">
+
+        <div @click="props.modal=true">
+            <slot name="button">
+                <button type="button" class="btn btn-outline-light w-100">
+                    Upload <i class="fas fa-fw fa-upload"></i>
+                </button>
+            </slot>
+        </div>
+
+        <ui-modal v-model="props.modal" style="text-align:left!important;">
+            <template #header>Upload</template>
+
+            <template #body>
+                <ui-field label="Descrição do arquivo">
+                    <input type="text" class="form-control" v-model="save.name">
+                </ui-field>
+
+                <ui-field label="Pasta">
+                    <input type="text" class="form-control" v-model="save.folder">
+                </ui-field>
+
+                <ui-field label="Informe a URL externa da imagem">
+                    <input type="text" class="form-control" v-model="save.url" :disabled="file">
+                </ui-field>
+
+                <ui-field label="Ou faça upload">
+                    <button type="button" class="btn btn-outline-light w-100" @click="openFileBrowser()" :disabled="save.url">
+                        <span>{{ file? file.name: "Upload" }}</span> <i class="fas fa-fw fa-upload"></i>
+                    </button>
+                </ui-field>
+            </template>
+
+            <template #footer>
+                <button type="button" class="btn btn-light">
+                    <i class="fas fa-fw fa-times"></i> Cancelar
+                </button>
+
+                <button type="button" class="btn btn-primary" @click="fileSave()">
+                    <i class="fas fa-fw fa-save"></i> Salvar
+                </button>
+            </template>
+        </ui-modal>
+    
+        <!-- <button type="button" class="btn btn-outline-light w-100" @click="openFileBrowser()">
+            Upload <i class="fas fa-fw fa-upload"></i>
+        </button>
+
+        <div class="ui-file-upload-files mt-2 bg-white border border-bottom-0 shadow-sm" :style="`position:absolute; top:100%; ${dropdownLeft?'left':'right'}:0; width:300px;`" v-if="filesToUpload.length>0">
+            <div class="d-flex align-items-center  border-bottom p-1" v-for="f in filesToUpload">
+                <div class="flex-grow-1 text-start">
+                    <div>{{ f.name||"Arquivo" }}</div>
+                    <div class="progress" style="height:10px;">
+                        <div class="progress-bar progress-bar-striped"
+                            :class="{'bg-success':f.success, 'bg-danger':f.error, 'progress-bar-animated':(!f.success && !f.error)}"
+                            :style="`width:${f.percent||0}%;`"
+                        ></div>
+                    </div>
+                    <small class="d-block text-danger" v-if="f.error">
+                        {{ f.error || "Erro desconhecido" }}.
+                        <a href="javascript:;" class="text-danger fw-bold" @click="startFileUpload(f)">Tentar novamente</a>
+                    </small>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-sm text-danger" @click="filesToUpload.splice(filesToUpload.indexOf(f), 1)">
+                        <i class="fas fa-fw fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center border-bottom" v-if="filesToUpload.length>0 && filesToUpload.length==filesToUpload.filter(f => f.success || f.error).length">
+                <button type="button" class="btn w-100" @click="filesToUpload=[]">
+                    Ok
+                </button>
+            </div>
+        </div> -->
+    </div>
+</template>
+
+<script>
+export default {
+    props: {
+        type: {default:"base64"}, // base64, base64-json, url, file-json
+        folder: {default:""}, // pasta de upload
+        multiple: {default:true},
+        dropArea: {default:true},
+        uploadOnSelect: {default:true}, // false = necessita clicar no arquivo listado para iniciar o upload
+        dropdownLeft: {default:true}, // dropdown alinhado à esquerda?
+        modal: {default:false}, // Exibir modal para upload?
+    },
+
+    watch: {
+        $props: {deep:true, handler(value) {
+            if (this.__preventRecursive) return;
+            this.props = JSON.parse(JSON.stringify(value));
+        }},
+
+        props: {deep:true, handler(value) {
+            this.__preventRecursive = true;
+            this.$emit('input', value.value||false);
+            for(let i in value) { this.$emit(`update:${i}`, value[i]); }
+            setTimeout(() => { this.__preventRecursive = false; }, 10);
+        }},
+    },
+
+    data() {
+        return {
+            success: false,
+            error: false,
+            uploadPercent: 0,
+            file: false,
+            save: {
+                folder: this.$props.folder,
+            },
+            props: JSON.parse(JSON.stringify(this.$props)),
+        };
+    },
+
+    methods: {
+        openFileBrowser() {
+            Object.assign(document.createElement('input'), {
+                type: "file",
+                onchange: (ev) => {
+                    this.file = ev.target.files[0];
+                },
+            }).click();
+        },
+
+        fileSave() {
+            let data = new FormData();
+            for(let i in this.save) data.append(i, this.save[i]);
+            if (this.file) data.append("file", this.file, this.file.name);
+
+            this.success = false;
+            this.error = false;
+            this.uploadPercent = 0;
+
+            this.$axios.post('/api/files/upload', data, {
+                onUploadProgress: (ev) => {
+                    file.uploadPercent = Math.round((ev.loaded * 100) / ev.total);
+                },
+            }).then(resp => {
+                this.success = true;
+                this.file = false;
+                this.save = {};
+                this.props.modal = false;
+                this.$emit('success', resp.data);
+            }).catch(err => {
+                this.error = err.response.data.message || "Erro desconhecido";
+                this.$emit('error', err.response.data);
+            });
+        },
+
+        uploadFiles(files) {
+            files = Array.isArray(files)? files: [files];
+            files.forEach(file => {
+                let item = {
+                    name: file.name,
+                    type: file.type,
+                    size: file.size,
+                    sizeUploaded: 0,
+                    percent: 0,
+                    success: false,
+                    error: false,
+                    file: file,
+                };
+
+                if (this.uploadOnSelect) {
+                    this.startFileUpload(item);
+                }
+
+                this.filesToUpload.push(item);
+            });
+        },
+
+        startFileUpload(file) {
+            let data = new FormData();
+            data.append("file", file.file, file.file.name);
+            data.append("folder", this.folder);
+
+            file.percent = 0;
+            file.sizeUploaded = 0;
+            file.success = false;
+            file.error = false;
+            this.$axios.post('/api/files/upload', data, {
+                onUploadProgress: (ev) => {
+                    file.percent = Math.round((ev.loaded * 100) / ev.total);
+                    file.sizeUploaded = ev.loaded;
+                },
+            }).then(resp => {
+                file.success = true;
+                this.$emit('success', resp.data);
+            }).catch(err => {
+                file.error = err.response.data.message || "Erro desconhecido";
+                this.$emit('error', err.response.data);
+            });
+        },
+    },
+}
+</script>
+
+<style>
+.ui-file-upload-droparea {
+    border: dashed 3px var(--bs-gray-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+</style>
