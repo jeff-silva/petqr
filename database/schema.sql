@@ -73,6 +73,7 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `petqr_collars` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `owner_id` bigint(20) unsigned DEFAULT NULL,
   `pet_photo_id` bigint(20) unsigned DEFAULT NULL,

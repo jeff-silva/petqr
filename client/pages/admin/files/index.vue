@@ -2,7 +2,7 @@
     <div>
         <ui-model-search model-name="files" singular="Arquivo" plural="Arquivos" ref="modelSearch">
             <template #table-header="">
-                <th>Thumb</th>
+                <th width="50px">Thumb</th>
                 <th data-orderby="name">Nome</th>
             </template>
 

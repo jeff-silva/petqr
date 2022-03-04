@@ -37,6 +37,10 @@ export default {
                     {label:"Buscar", to:"/admin/files", children:[]},
                     {label:"Novo", to:"/admin/files/new", children:[]},
                 ]},
+                {label:"Coleiras", children:[
+                    {label:"Buscar", to:"/admin/petqr-collars", children:[]},
+                    {label:"Novo", to:"/admin/petqr-collars/new", children:[]},
+                ]},
             ],
         };
     },

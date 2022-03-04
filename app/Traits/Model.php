@@ -48,6 +48,21 @@ trait Model
     }
 
 
+    public function scopeFindIdOrSlug($query, $slugid)
+    {
+        $fillable = $this->fillable;
+        $query->where(function($q) use($slugid, $fillable) {
+            $q->where('id', $slugid);
+
+            if (in_array('slug', $fillable)) {
+                $q->orWhere('slug', $slugid);
+            }
+        });
+
+        return $query->first();
+    }
+
+
     public function scopeExport($query) {
         $format = request('format', 'json');
         $filename = uniqid('download-'). ".{$format}";
