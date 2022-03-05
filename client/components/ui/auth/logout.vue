@@ -15,7 +15,10 @@ export default {
             this.$auth.logout().then(resp => {
                 if (this.redirect) {
                     this.$router.push(this.redirect);
+                    return;
                 }
+
+                location.reload();
             });
         },
     },

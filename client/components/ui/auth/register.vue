@@ -1,6 +1,15 @@
 <template>
     <div>
-        <ui-form method="post" action="/api/auth/register" v-model="post" #default="{loading, errorFields}">
+        <ui-form method="post"
+            action="/api/auth/register"
+            v-model="post"
+            #default="{loading, response, errorFields}"
+            @success="post={}"
+        >
+            <div class="alert alert-success" v-if="response">
+                Seu registro foi concluído. Agora é só fazer login :)
+            </div>
+
             <slot name="fields">
                 <ui-field label="Nome" :error="errorFields.name">
                     <input type="text" class="form-control" v-model="post.name" placeholder="Name">

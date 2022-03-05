@@ -20,6 +20,7 @@ class User extends Authenticatable implements JWTSubject
 		'id',
 		'name',
 		'email',
+		'photo_id',
 		'email_verified_at',
 		'password',
 		'remember_token',
@@ -110,5 +111,17 @@ class User extends Authenticatable implements JWTSubject
 	public function page()
 	{
 		return $this->belongsTo(App\Models\Pages::class, 'owner', 'id');
+	}
+
+
+	public function photo()
+	{
+		return $this->hasOne(Files::class, 'id', 'photo_id');
+	}
+
+
+	public function photos()
+	{
+		return $this->hasMany(\App\Models\Files::class, 'id', 'photo_id');
 	}
 }

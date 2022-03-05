@@ -1,27 +1,12 @@
 <template>
-    <div>
-        <div class="d-flex align-items-center mb-3" v-if="layout=='horizontal'">
-            <div class="pe-3" :style="{minWidth:labelWidth, maxWidth:labelWidth}">
-                <slot name="label">{{ label }}</slot>
-            </div>
-            <div class="flex-grow-1">
-                <slot></slot>
-                <div class="ui-field-info">
-                    <slot name="info"></slot>
-                </div>
-                <small class="d-block text-danger pt-1" v-if="compError" v-html="compError"></small>
-            </div>
+    <div class="ui-field mb-3" :class="{'d-flex':widthBig}">
+        <div :class="{'py-2':widthBig, 'pb-1':!widthBig}" :style="`min-width:${widthBig? null: labelWidth}; max-width:${widthBig? null: labelWidth};`">
+            <slot name="label">{{ label }}</slot>
         </div>
-    
-        <div class="mb-3" v-else>
-            <div class="form-label">
-                <slot name="label">{{ label }}</slot>
-            </div>
+
+        <div :class="{'flex-grow-1':widthBig}">
             <slot></slot>
-            <div class="ui-field-info">
-                <slot name="info"></slot>
-            </div>
-            <small class="d-block text-danger pt-1" v-if="compError" v-html="compError"></small>
+            <small class="d-block text-danger" v-if="_compError" v-html="_compError"></small>
         </div>
     </div>
 </template>
@@ -30,13 +15,12 @@
 export default {
     props: {
         label: {default:''},
-        layout: {default:'vertical'},
         labelWidth: {default:'200px'},
         error: [Boolean, Number, String, Array, Object],
     },
 
     computed: {
-        compError() {
+        _compError() {
             let error = [];
 
             if (typeof this.error=='string') {
@@ -51,6 +35,27 @@ export default {
 
             return error.join('<br>');
         },
+    },
+
+    data() {
+        return {
+            width: 0,
+            widthBig: false,
+        };
+    },
+
+    methods: {
+        registerResizeHandler() {
+            this.width = this.$el.offsetWidth;
+            this.widthBig = this.$el.offsetWidth>=700;
+        },
+    },
+
+    mounted() {
+        this.registerResizeHandler();
+        window.addEventListener('resize', ev => {
+            this.registerResizeHandler();
+        });
     },
 }
 </script>

@@ -41,6 +41,7 @@ export default {
                     {label:"Buscar", to:"/admin/petqr-collars", children:[]},
                     {label:"Novo", to:"/admin/petqr-collars/new", children:[]},
                 ]},
+                {label:"Meus dados", to:"/admin/user/me"},
             ],
         };
     },

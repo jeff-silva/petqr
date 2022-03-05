@@ -1,5 +1,5 @@
 <template>
-    <ui-model-edit model-name="user" :model-id="$route.params.id" singular="Usuário" plural="Usuários" #default="{value, errorFields}">
+    <ui-model-edit model-name="user" :model-id="_userId" singular="Usuário" plural="Usuários" #default="{value, errorFields}">
         <ui-field label="Nome" layout="horizontal" :error="errorFields.name">
             <input type="text" class="form-control" v-model="value.name">
         </ui-field>
@@ -27,6 +27,13 @@ export default {
         return {
             title: "Editar usuário",
         };
+    },
+
+    computed: {
+        _userId() {
+            let userId = this.$route.params.id || false;
+            return userId=="me"? this.$auth.user.id: userId;
+        },
     },
 
     data() {
