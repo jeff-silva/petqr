@@ -18,7 +18,7 @@
         
         <ui-field label="QR code" layout="horizontal" v-if="value.links && value.links.qrcode">
             <div class="text-center">
-                <img :src="value.links.qrcode" alt=""><br>
+                <ui-qrcode v-model="value.links.page"></ui-qrcode><br>
                 <a :href="value.links.page" target="_blank">Acessar</a>
             </div>
         </ui-field>

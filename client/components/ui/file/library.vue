@@ -6,13 +6,17 @@
             <input type="text" class="form-control border-0 shadow-none" placeholder="Buscar arquivo" v-model="search.params.q" @keyup="filesSearch()">
             
             <div class="input-group-btn">
-                <button type="button" class="btn btn-light border-0 shadow-none rounded-0">
+                <button type="button" class="btn btn-primary border-0 shadow-none rounded-0" v-loading="search.loading">
                     <i class="fas fa-fw fa-search"></i>
                 </button>
             </div>
         </div>
 
         <div class="list-inline p-2 border border-light shadow-sm mt-2" v-if="search.response">
+            <div class="list-inline-item" style="cursor:pointer;" v-if="search.response.data.length==0">
+                <div style="padding:12px 0; width:100%; text-align:center;">Nenhum arquivo encontrado</div>
+            </div>
+
             <div class="list-inline-item" style="cursor:pointer;" v-for="f in search.response.data" @click="filesSelect(f)">
                 <img :src="f.url" alt="" v-if="f.type=='image'" style="width:50px; height:50px; object-fit:cover;" :key="f.id">
                 <div v-else style="padding:12px 0; width:50px; text-align:center;">{{ f.ext }}</div>
@@ -57,9 +61,9 @@ export default {
 
     methods: {
         filesSearch() {
+            this.search.loading = true;
             if (this.__fileSearchTimeout) clearTimeout(this.__fileSearchTimeout);
             this.__fileSearchTimeout = setTimeout(() => {
-                this.search.loading = true;
                 this.$axios.get('/api/files/search', {params:this.search.params}).then(resp => {
                     this.search.loading = false;
                     this.search.response = resp.data;

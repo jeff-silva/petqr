@@ -1,5 +1,5 @@
 <template>
-    <div class="ui-field mb-3" :class="{'d-flex':widthBig}">
+    <div class="ui-field mb-3" :class="{'d-flex':widthBig, 'ui-field-error':_compError}">
         <div :class="{'py-2':widthBig, 'pb-1':!widthBig}" :style="`min-width:${widthBig? null: labelWidth}; max-width:${widthBig? null: labelWidth};`">
             <slot name="label">{{ label }}</slot>
         </div>
@@ -47,7 +47,7 @@ export default {
     methods: {
         registerResizeHandler() {
             this.width = this.$el.offsetWidth;
-            this.widthBig = this.$el.offsetWidth>=700;
+            this.widthBig = this.$el.offsetWidth>=600;
         },
     },
 
@@ -61,5 +61,11 @@ export default {
 </script>
 
 <style>
-.ui-field-info * {font-size:12px; color:var(--bs-gray) !important;}
+.ui-field > * {transition: all 300ms ease;}
+.ui-field-error .form-control,
+.ui-field-error .el-input__inner {
+    border-color: var(--bs-danger);
+    box-shadow: none !important;
+    outline: 0 !important;
+}
 </style>

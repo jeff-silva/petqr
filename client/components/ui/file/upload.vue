@@ -24,7 +24,7 @@
                 <el-tabs value="upload">
                     <el-tab-pane label="Upload" name="upload">
                         <ui-field label="Faça upload">
-                            <button type="button" class="btn btn-outline-light w-100" @click="openFileBrowser()" :disabled="save.url">
+                            <button type="button" class="btn btn-outline-light w-100" @click="openFileBrowser()">
                                 <span>{{ file? file.name: "Upload" }}</span> <i class="fas fa-fw fa-upload"></i>
                             </button>
                         </ui-field>
@@ -32,7 +32,7 @@
 
                     <el-tab-pane label="URL" name="url">
                         <ui-field label="Informe a URL externa da imagem">
-                            <input type="text" class="form-control" v-model="save.url" :disabled="file">
+                            <input type="text" class="form-control" v-model="save.url">
                         </ui-field>
                     </el-tab-pane>
 
@@ -49,7 +49,7 @@
             </template>
 
             <template #footer>
-                <button type="button" class="btn btn-light">
+                <button type="button" class="btn btn-light" @click="props.modalOpen=false">
                     <i class="fas fa-fw fa-times"></i> Cancelar
                 </button>
 
