@@ -109,6 +109,6 @@ class User extends Authenticatable implements JWTSubject
 
 	public function page()
 	{
-		return $this->belongsTo(App\Models\Pages::class);
+		return $this->belongsTo(App\Models\Pages::class, 'owner', 'id');
 	}
 }

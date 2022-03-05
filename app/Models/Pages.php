@@ -19,12 +19,12 @@ class Pages extends \Illuminate\Database\Eloquent\Model
 
 	public function owner()
 	{
-		return $this->hasOne(App\Models\User::class);
+		return $this->hasOne(User::class, 'id', 'owner');
 	}
 
 
 	public function owners()
 	{
-		return $this->hasMany(App\Models\User::class);
+		return $this->hasMany(\App\Models\User::class, 'id', 'owner');
 	}
 }

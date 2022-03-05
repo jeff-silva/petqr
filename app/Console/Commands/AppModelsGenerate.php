@@ -62,7 +62,7 @@ class AppModelsGenerate extends AppBase
                 $class = $classes[ $tableClass->NameFull ];
                 $method = (string) \Str::of(str_replace('_id', '', $fk->COLUMN_NAME))->singular()->kebab()->camel();
                 $method = $class->addMethod($method);
-                $method->setBody("return \$this->hasOne({$tableReferenced->NameFull}::class);");
+                $method->setBody("return \$this->hasOne(\\{$tableReferenced->NameFull}::class, '{$fk->REFERENCED_COLUMN_NAME}', '{$fk->COLUMN_NAME}');");
                 $method->setPublic();
                 file_put_contents(base_path($tableClass->File), $file->__toString());
             }
@@ -74,7 +74,7 @@ class AppModelsGenerate extends AppBase
                 $class = $classes[ $tableClass->NameFull ];
                 $method = (string) \Str::of(str_replace('_id', '', $fk->COLUMN_NAME))->plural()->kebab()->camel();
                 $method = $class->addMethod($method);
-                $method->setBody("return \$this->hasMany({$tableReferenced->NameFull}::class);");
+                $method->setBody("return \$this->hasMany(\\{$tableReferenced->NameFull}::class, '{$fk->REFERENCED_COLUMN_NAME}', '{$fk->COLUMN_NAME}');");
                 $method->setPublic();
                 file_put_contents(base_path($tableClass->File), $file->__toString());
             }
@@ -86,7 +86,7 @@ class AppModelsGenerate extends AppBase
                 $class = $classes[ $tableReferenced->NameFull ];
                 $method = (string) \Str::of($tableClass->Name)->singular()->kebab()->camel();
                 $method = $class->addMethod($method);
-                $method->setBody("return \$this->belongsTo({$tableClass->NameFull}::class);");
+                $method->setBody("return \$this->belongsTo({$tableClass->NameFull}::class, '{$fk->COLUMN_NAME}', '{$fk->REFERENCED_COLUMN_NAME}');");
                 $method->setPublic();
                 file_put_contents(base_path($tableReferenced->File), $file->__toString());
             }

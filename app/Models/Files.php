@@ -151,6 +151,6 @@ class Files extends \Illuminate\Database\Eloquent\Model
 
 	public function petqrCollar()
 	{
-		return $this->belongsTo(App\Models\PetqrCollars::class);
+		return $this->belongsTo(App\Models\PetqrCollars::class, 'pet_photo_id', 'id');
 	}
 }

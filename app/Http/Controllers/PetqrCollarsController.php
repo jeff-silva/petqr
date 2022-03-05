@@ -12,4 +12,11 @@ class PetqrCollarsController extends Controller
 			'except' => ['search', 'find'],
 		]);
 	}
+
+	public function find($id)
+    {
+        return $this->model->whereDeleted(false)
+			->with(['petPhoto'])
+			->findIdOrSlug($id);
+    }
 }

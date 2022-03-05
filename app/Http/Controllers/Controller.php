@@ -35,7 +35,7 @@ class Controller extends BaseController
 
     public function find($id)
     {
-        return $this->model->findIdOrSlug($id);
+        return $this->model->whereDeleted(false)->findIdOrSlug($id);
     }
 
 

@@ -31,7 +31,7 @@ class PetqrCollars extends \Illuminate\Database\Eloquent\Model
 			$links['page'] = $url;
 			$links['qrcode'] = 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='. urldecode($url);
 		}
-		
+
 		return $links;
 	}
 
@@ -47,12 +47,12 @@ class PetqrCollars extends \Illuminate\Database\Eloquent\Model
 
 	public function petPhoto()
 	{
-		return $this->hasOne(App\Models\Files::class);
+		return $this->hasOne(Files::class, 'id', 'pet_photo_id');
 	}
 
 
 	public function petPhotos()
 	{
-		return $this->hasMany(App\Models\Files::class);
+		return $this->hasMany(\App\Models\Files::class, 'id', 'pet_photo_id');
 	}
 }
