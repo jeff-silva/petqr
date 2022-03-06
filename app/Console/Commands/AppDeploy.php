@@ -12,7 +12,7 @@ class AppDeploy extends AppBase
     protected $description = 'Deploy da aplicação';
 
     public function handle() {
-        $this->call('migrate');
-        $this->call('db:seed');
+        // $this->call('migrate');
+        // $this->call('db:seed');
     }
 }
