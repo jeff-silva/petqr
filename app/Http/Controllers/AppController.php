@@ -37,6 +37,43 @@ class AppController extends Controller
 		return $routes;
 	}
 
+
+	public function search()
+	{
+		$return = [];
+
+		$return[] = [
+			'name' => 'Arquivos',
+			'items' => (new \App\Models\Files)->select(['id', 'name'])->search()->get()->transform(function($item) {
+				return ['name' => $item->name, 'url' => "/admin/files/{$item->id}"];
+			}),
+		];
+		
+		$return[] = [
+			'name' => 'Páginas',
+			'items' => (new \App\Models\Pages)->select(['id', 'name'])->search()->get()->transform(function($item) {
+				return ['name' => $item->name, 'url' => "/admin/pages/{$item->id}"];
+			}),
+		];
+
+		$return[] = [
+			'name' => 'Petqr Coleiras',
+			'items' => (new \App\Models\PetqrCollars)->select(['id', 'name'])->search()->get()->transform(function($item) {
+				return ['name' => $item->name, 'url' => "/admin/petqr-collars/{$item->id}"];
+			}),
+		];
+
+		$return[] = [
+			'name' => 'Usuários',
+			'items' => (new \App\Models\User)->select(['id', 'name'])->search()->get()->transform(function($item) {
+				return ['name' => $item->name, 'url' => "/admin/user/{$item->id}"];
+			}),
+		];
+
+		return $return;
+	}
+
+
 	public function mailTest() {
 		$params = array_merge([
 			'to' => '',

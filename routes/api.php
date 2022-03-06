@@ -25,6 +25,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function($router) {
 });
 
 Route::get('app/endpoints', '\App\Http\Controllers\AppController@endpoints');
+Route::get('app/search', '\App\Http\Controllers\AppController@search');
 Route::post('app/mail-test', '\App\Http\Controllers\AppController@mailTest');
 
 Route::get('settings', '\App\Http\Controllers\SettingsController@getAll');

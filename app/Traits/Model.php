@@ -195,6 +195,7 @@ trait Model
             'orderby' => 'updated_at',
             'order' => 'desc',
             'deleted' => '',
+            'limit' => '',
         ], $this->searchParams(), $params);
 
         foreach($params as $field=>$value) {
@@ -291,6 +292,11 @@ trait Model
 
         // ?deleted=1
         $query->whereDeleted($params['deleted']);
+
+        // ?limit=3
+        if ($params['limit']) {
+            $query->limit($params['limit']);
+        }
 
         return $query;
     }

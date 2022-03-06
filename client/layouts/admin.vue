@@ -14,6 +14,23 @@
             <template #nav-body>
                 <ui-nav :items="navItems"></ui-nav>
             </template>
+
+            <template #header>
+                <ui-autocomplete action="/api/app/search" :params="{q:'', limit:3}" style="max-width:250px;">
+                    <template #response="{loading, response}">
+                        <div class="bg-white shadow-sm">
+                            <div v-for="r in response" v-if="r.items.length">
+                                <div style="background:#ddd; padding:4px; font-size:14px;">{{ r.name }}</div>
+                                <div v-for="i in r.items" style="overflow:hidden;">
+                                    <nuxt-link :to="i.url" class="d-block p-1" style="color:#666; text-decoration:none;">
+                                        {{ i.name }}
+                                    </nuxt-link>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </ui-autocomplete>
+            </template>
         </ui-app>
     </div>
 </template>

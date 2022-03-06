@@ -45,17 +45,23 @@ export default {
     },
 
     methods: {
-        registerResizeHandler() {
+        calculateSizes() {
             this.width = this.$el.offsetWidth;
             this.widthBig = this.$el.offsetWidth>=600;
         },
+
+        resizeEventListener(ev) {
+            this.calculateSizes();
+        },
+    },
+
+    beforeDestroy() {
+        window.removeEventListener('resize', this.resizeEventListener);
     },
 
     mounted() {
-        this.registerResizeHandler();
-        window.addEventListener('resize', ev => {
-            this.registerResizeHandler();
-        });
+        this.calculateSizes();
+        window.addEventListener('resize', this.resizeEventListener);
     },
 }
 </script>
