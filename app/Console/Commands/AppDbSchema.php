@@ -57,7 +57,9 @@ class AppDbSchema extends AppBase
                         $schema_php[] = '';
                         $schema_php[] = '';
                         $schema_php[] = "// Create fk {$const_name}";
-                        $schema_php[] = "if (! collect(\DB::select(\"SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='{$const_name}' \"))->first()) {";
+                        $schema_php[] = "\$exists = collect(\DB::select(\"SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='{$const_name}' \"))->first();";
+                        $schema_php[] = "dump(\$exists);";
+                        $schema_php[] = "if (! \$exists) {";
                         $schema_php[] = "\t\DB::select(\"ALTER TABLE `{$table->Name}` ADD {$const_sql}\");";
                         $schema_php[] = "}";
                     }
