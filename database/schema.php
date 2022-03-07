@@ -1,5 +1,6 @@
 <?php
 
+$database = env('DB_DATABASE');
 
 
 // Create table failed_jobs
@@ -212,9 +213,9 @@
 
 
 // Create fk FK_pages_users
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
-dump("FK_pages_users exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_pages_users'"))->first()) {
+	\DB::select("ALTER TABLE `pages` ADD CONSTRAINT `FK_pages_users` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column pages.name
@@ -224,9 +225,9 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 
 // Create fk FK_pages_users
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
-dump("FK_pages_users exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_pages_users'"))->first()) {
+	\DB::select("ALTER TABLE `pages` ADD CONSTRAINT `FK_pages_users` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column pages.slug
@@ -236,9 +237,9 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 
 // Create fk FK_pages_users
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
-dump("FK_pages_users exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_pages_users'"))->first()) {
+	\DB::select("ALTER TABLE `pages` ADD CONSTRAINT `FK_pages_users` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column pages.content
@@ -248,9 +249,9 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 
 // Create fk FK_pages_users
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
-dump("FK_pages_users exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_pages_users'"))->first()) {
+	\DB::select("ALTER TABLE `pages` ADD CONSTRAINT `FK_pages_users` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column pages.owner
@@ -260,9 +261,9 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 
 // Create fk FK_pages_users
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
-dump("FK_pages_users exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_pages_users'"))->first()) {
+	\DB::select("ALTER TABLE `pages` ADD CONSTRAINT `FK_pages_users` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column pages.created_at
@@ -272,9 +273,9 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 
 // Create fk FK_pages_users
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
-dump("FK_pages_users exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_pages_users'"))->first()) {
+	\DB::select("ALTER TABLE `pages` ADD CONSTRAINT `FK_pages_users` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column pages.updated_at
@@ -284,9 +285,9 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 
 // Create fk FK_pages_users
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
-dump("FK_pages_users exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_pages_users'"))->first()) {
+	\DB::select("ALTER TABLE `pages` ADD CONSTRAINT `FK_pages_users` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column pages.deleted_at
@@ -296,9 +297,9 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 
 // Create fk FK_pages_users
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
-dump("FK_pages_users exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_pages_users'"))->first()) {
+	\DB::select("ALTER TABLE `pages` ADD CONSTRAINT `FK_pages_users` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create table password_resets
@@ -423,9 +424,9 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 
 // Create fk FK_petqr_collars_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
-dump("FK_petqr_collars_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_petqr_collars_files'"))->first()) {
+	\DB::select("ALTER TABLE `petqr_collars` ADD CONSTRAINT `FK_petqr_collars_files` FOREIGN KEY (`pet_photo_id`) REFERENCES `files` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION");
+}
 
 
 // Create/Update column petqr_collars.slug
@@ -435,9 +436,9 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_petqr_collars_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
-dump("FK_petqr_collars_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_petqr_collars_files'"))->first()) {
+	\DB::select("ALTER TABLE `petqr_collars` ADD CONSTRAINT `FK_petqr_collars_files` FOREIGN KEY (`pet_photo_id`) REFERENCES `files` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION");
+}
 
 
 // Create/Update column petqr_collars.name
@@ -447,9 +448,9 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_petqr_collars_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
-dump("FK_petqr_collars_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_petqr_collars_files'"))->first()) {
+	\DB::select("ALTER TABLE `petqr_collars` ADD CONSTRAINT `FK_petqr_collars_files` FOREIGN KEY (`pet_photo_id`) REFERENCES `files` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION");
+}
 
 
 // Create/Update column petqr_collars.owner_id
@@ -459,9 +460,9 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_petqr_collars_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
-dump("FK_petqr_collars_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_petqr_collars_files'"))->first()) {
+	\DB::select("ALTER TABLE `petqr_collars` ADD CONSTRAINT `FK_petqr_collars_files` FOREIGN KEY (`pet_photo_id`) REFERENCES `files` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION");
+}
 
 
 // Create/Update column petqr_collars.pet_photo_id
@@ -471,9 +472,9 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_petqr_collars_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
-dump("FK_petqr_collars_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_petqr_collars_files'"))->first()) {
+	\DB::select("ALTER TABLE `petqr_collars` ADD CONSTRAINT `FK_petqr_collars_files` FOREIGN KEY (`pet_photo_id`) REFERENCES `files` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION");
+}
 
 
 // Create/Update column petqr_collars.description
@@ -483,9 +484,9 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_petqr_collars_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
-dump("FK_petqr_collars_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_petqr_collars_files'"))->first()) {
+	\DB::select("ALTER TABLE `petqr_collars` ADD CONSTRAINT `FK_petqr_collars_files` FOREIGN KEY (`pet_photo_id`) REFERENCES `files` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION");
+}
 
 
 // Create/Update column petqr_collars.created_at
@@ -495,9 +496,9 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_petqr_collars_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
-dump("FK_petqr_collars_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_petqr_collars_files'"))->first()) {
+	\DB::select("ALTER TABLE `petqr_collars` ADD CONSTRAINT `FK_petqr_collars_files` FOREIGN KEY (`pet_photo_id`) REFERENCES `files` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION");
+}
 
 
 // Create/Update column petqr_collars.updated_at
@@ -507,9 +508,9 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_petqr_collars_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
-dump("FK_petqr_collars_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_petqr_collars_files'"))->first()) {
+	\DB::select("ALTER TABLE `petqr_collars` ADD CONSTRAINT `FK_petqr_collars_files` FOREIGN KEY (`pet_photo_id`) REFERENCES `files` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION");
+}
 
 
 // Create/Update column petqr_collars.deleted_at
@@ -519,9 +520,9 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_petqr_collars_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
-dump("FK_petqr_collars_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_petqr_collars_files'"))->first()) {
+	\DB::select("ALTER TABLE `petqr_collars` ADD CONSTRAINT `FK_petqr_collars_files` FOREIGN KEY (`pet_photo_id`) REFERENCES `files` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION");
+}
 
 
 // Create table settings
@@ -590,9 +591,9 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_users_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
-dump("FK_users_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_users_files'"))->first()) {
+	\DB::select("ALTER TABLE `users` ADD CONSTRAINT `FK_users_files` FOREIGN KEY (`photo_id`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column users.name
@@ -602,9 +603,9 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_users_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
-dump("FK_users_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_users_files'"))->first()) {
+	\DB::select("ALTER TABLE `users` ADD CONSTRAINT `FK_users_files` FOREIGN KEY (`photo_id`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column users.email
@@ -614,9 +615,9 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_users_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
-dump("FK_users_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_users_files'"))->first()) {
+	\DB::select("ALTER TABLE `users` ADD CONSTRAINT `FK_users_files` FOREIGN KEY (`photo_id`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column users.photo_id
@@ -626,9 +627,9 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_users_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
-dump("FK_users_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_users_files'"))->first()) {
+	\DB::select("ALTER TABLE `users` ADD CONSTRAINT `FK_users_files` FOREIGN KEY (`photo_id`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column users.email_verified_at
@@ -638,9 +639,9 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_users_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
-dump("FK_users_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_users_files'"))->first()) {
+	\DB::select("ALTER TABLE `users` ADD CONSTRAINT `FK_users_files` FOREIGN KEY (`photo_id`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column users.password
@@ -650,9 +651,9 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_users_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
-dump("FK_users_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_users_files'"))->first()) {
+	\DB::select("ALTER TABLE `users` ADD CONSTRAINT `FK_users_files` FOREIGN KEY (`photo_id`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column users.remember_token
@@ -662,9 +663,9 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_users_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
-dump("FK_users_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_users_files'"))->first()) {
+	\DB::select("ALTER TABLE `users` ADD CONSTRAINT `FK_users_files` FOREIGN KEY (`photo_id`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column users.created_at
@@ -674,9 +675,9 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_users_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
-dump("FK_users_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_users_files'"))->first()) {
+	\DB::select("ALTER TABLE `users` ADD CONSTRAINT `FK_users_files` FOREIGN KEY (`photo_id`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
 
 
 // Create/Update column users.updated_at
@@ -686,6 +687,6 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 
 // Create fk FK_users_files
-$exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
-dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
-dump("FK_users_files exists", $exists, gettype($exists));
+if (! collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='FK_users_files'"))->first()) {
+	\DB::select("ALTER TABLE `users` ADD CONSTRAINT `FK_users_files` FOREIGN KEY (`photo_id`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE SET NULL");
+}
