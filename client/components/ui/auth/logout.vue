@@ -13,10 +13,10 @@ export default {
     methods: {
         logout() {
             this.$auth.logout().then(resp => {
-                if (this.redirect) {
-                    this.$router.push(this.redirect);
-                    return;
-                }
+                // if (this.redirect) {
+                //     this.$router.push(this.redirect);
+                //     return;
+                // }
 
                 location.reload();
             });
