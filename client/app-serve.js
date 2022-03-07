@@ -29,5 +29,5 @@ _command('/..', `php artisan serve --port=${app.port}`);
 _command('', `npm run dev -- --port ${client.port}`);
 console.log(`\n >> CLIENT: ${client.href} << \n`);
 
-var start = (process.platform == 'darwin'? 'open': process.platform == 'win32'? 'start': 'xdg-open');
-require('child_process').exec(start + ' ' + client.href);
+var start = (process.platform == 'darwin'? 'open': (process.platform == 'win32'? 'start': 'xdg-open'));
+require('child_process').exec(`${start} ${client.href}`);

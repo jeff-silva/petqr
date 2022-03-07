@@ -18,7 +18,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }
     ]
   },
 
@@ -41,7 +41,10 @@ export default {
     ['@nuxtjs/axios', { proxy: true }],
 
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
+    ['@nuxtjs/pwa', {
+      manifest: {lang: 'en'},
+      icon: {source:'~/static/icon.png'},
+    }],
 
     // https://auth.nuxtjs.org/
     ['@nuxtjs/auth-next', {
@@ -81,13 +84,6 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
-
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    manifest: {
-      lang: 'en'
-    }
-  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

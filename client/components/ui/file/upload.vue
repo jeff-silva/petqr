@@ -42,10 +42,6 @@
                         </ui-field>
                     </el-tab-pane>
                 </el-tabs>
-
-                
-
-                
             </template>
 
             <template #footer>
@@ -53,7 +49,7 @@
                     <i class="fas fa-fw fa-times"></i> Cancelar
                 </button>
 
-                <button type="button" class="btn btn-primary" @click="fileSave()">
+                <button type="button" class="btn btn-primary" @click="fileSave()" v-loading="uploading">
                     <i class="fas fa-fw fa-save"></i> Salvar
                 </button>
             </template>
@@ -92,6 +88,7 @@ export default {
             success: false,
             error: false,
             uploadPercent: 0,
+            uploading: false,
             file: false,
             save: {
                 folder: this.$props.folder,
@@ -119,63 +116,21 @@ export default {
             this.error = false;
             this.uploadPercent = 0;
 
+            this.uploading = true;
             this.$axios.post('/api/files/upload', data, {
                 onUploadProgress: (ev) => {
                     file.uploadPercent = Math.round((ev.loaded * 100) / ev.total);
                 },
             }).then(resp => {
+                this.uploading = false;
                 this.success = true;
                 this.file = false;
                 this.save = {};
                 this.props.modalOpen = false;
                 this.$emit('success', resp.data);
             }).catch(err => {
+                this.uploading = false;
                 this.error = err.response.data.message || "Erro desconhecido";
-                this.$emit('error', err.response.data);
-            });
-        },
-
-        uploadFiles(files) {
-            files = Array.isArray(files)? files: [files];
-            files.forEach(file => {
-                let item = {
-                    name: file.name,
-                    type: file.type,
-                    size: file.size,
-                    sizeUploaded: 0,
-                    percent: 0,
-                    success: false,
-                    error: false,
-                    file: file,
-                };
-
-                if (this.uploadOnSelect) {
-                    this.startFileUpload(item);
-                }
-
-                this.filesToUpload.push(item);
-            });
-        },
-
-        startFileUpload(file) {
-            let data = new FormData();
-            data.append("file", file.file, file.file.name);
-            data.append("folder", this.folder);
-
-            file.percent = 0;
-            file.sizeUploaded = 0;
-            file.success = false;
-            file.error = false;
-            this.$axios.post('/api/files/upload', data, {
-                onUploadProgress: (ev) => {
-                    file.percent = Math.round((ev.loaded * 100) / ev.total);
-                    file.sizeUploaded = ev.loaded;
-                },
-            }).then(resp => {
-                file.success = true;
-                this.$emit('success', resp.data);
-            }).catch(err => {
-                file.error = err.response.data.message || "Erro desconhecido";
                 this.$emit('error', err.response.data);
             });
         },

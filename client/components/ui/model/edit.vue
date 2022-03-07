@@ -3,7 +3,6 @@
         :action="`/api/${modelName}/save`"
         v-model="props.value"
         #default="{loading, error, errorFields}"
-        :success-text="`${singular} salvo(a)`"
         @success="onSuccess"
     >
         <div class="bg-white p-3 shadow-sm">
@@ -92,7 +91,17 @@ export default {
         onSuccess(respData) {
             this.props.value = respData;
             this.$emit('success', respData);
-            this.successRedirect();
+            
+            this.$swal.fire({
+                title: `Dados de ${this.singular} foram salvos`,
+                confirmButtonText: `Lista de ${this.plural}`,
+                showCancelButton: true,
+                cancelButtonText: `Fechar`,
+            }).then(resp => {
+                if (resp.isConfirmed) {
+                    this.$router.push(`/admin/${this.modelName}/`);
+                }
+            });
         },
 
         successRedirect() {

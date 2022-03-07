@@ -12,4 +12,9 @@ class UserController extends Controller
 			'except' => ['search', 'find'],
 		]);
 	}
+
+	public function search()
+    {
+        return $this->model->search()->with(['photo'])->paginate(request('per_page', 15));
+    }
 }

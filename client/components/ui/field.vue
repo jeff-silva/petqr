@@ -1,10 +1,10 @@
 <template>
-    <div class="ui-field mb-3" :class="{'d-flex':widthBig, 'ui-field-error':_compError}">
-        <div :class="{'py-2':widthBig, 'pb-1':!widthBig}" :style="`min-width:${widthBig? null: labelWidth}; max-width:${widthBig? null: labelWidth};`">
+    <div class="ui-field mb-3" :class="{'d-flex':isLarge, 'ui-field-error':_compError}">
+        <div :class="{'py-2':isLarge, 'pb-1':!isLarge}" :style="`min-width:${isLarge? null: labelWidth}; max-width:${isLarge? null: labelWidth};`">
             <slot name="label">{{ label }}</slot>
         </div>
 
-        <div :class="{'flex-grow-1':widthBig}">
+        <div :class="{'flex-grow-1':isLarge}">
             <slot></slot>
             <small class="d-block text-danger" v-if="_compError" v-html="_compError"></small>
         </div>
@@ -17,6 +17,7 @@ export default {
         label: {default:''},
         labelWidth: {default:'200px'},
         error: [Boolean, Number, String, Array, Object],
+        widthBreakpoint: {default:600},
     },
 
     computed: {
@@ -39,15 +40,15 @@ export default {
 
     data() {
         return {
-            width: 0,
-            widthBig: false,
+            parentWidth: 0,
+            isLarge: false,
         };
     },
 
     methods: {
         calculateSizes() {
-            this.width = this.$el.offsetWidth;
-            this.widthBig = this.$el.offsetWidth>=600;
+            this.parentWidth = this.$el.offsetWidth;
+            this.isLarge = this.$el.offsetWidth>=this.widthBreakpoint;
         },
 
         resizeEventListener(ev) {
@@ -67,7 +68,7 @@ export default {
 </script>
 
 <style>
-.ui-field > * {transition: all 300ms ease;}
+/* .ui-field > * {transition: all 300ms ease;} */
 .ui-field-error .form-control,
 .ui-field-error .el-input__inner {
     border-color: var(--bs-danger);
