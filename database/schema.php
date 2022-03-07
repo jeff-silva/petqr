@@ -213,6 +213,7 @@
 
 // Create fk FK_pages_users
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
 dump("FK_pages_users exists", $exists, gettype($exists));
 
 
@@ -224,6 +225,7 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 // Create fk FK_pages_users
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
 dump("FK_pages_users exists", $exists, gettype($exists));
 
 
@@ -235,6 +237,7 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 // Create fk FK_pages_users
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
 dump("FK_pages_users exists", $exists, gettype($exists));
 
 
@@ -246,6 +249,7 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 // Create fk FK_pages_users
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
 dump("FK_pages_users exists", $exists, gettype($exists));
 
 
@@ -257,6 +261,7 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 // Create fk FK_pages_users
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
 dump("FK_pages_users exists", $exists, gettype($exists));
 
 
@@ -268,6 +273,7 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 // Create fk FK_pages_users
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
 dump("FK_pages_users exists", $exists, gettype($exists));
 
 
@@ -279,6 +285,7 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 // Create fk FK_pages_users
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
 dump("FK_pages_users exists", $exists, gettype($exists));
 
 
@@ -290,6 +297,7 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 // Create fk FK_pages_users
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_pages_users' ");
 dump("FK_pages_users exists", $exists, gettype($exists));
 
 
@@ -416,6 +424,7 @@ dump("FK_pages_users exists", $exists, gettype($exists));
 
 // Create fk FK_petqr_collars_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
 dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
@@ -427,6 +436,7 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 // Create fk FK_petqr_collars_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
 dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
@@ -438,6 +448,7 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 // Create fk FK_petqr_collars_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
 dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
@@ -449,6 +460,7 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 // Create fk FK_petqr_collars_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
 dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
@@ -460,6 +472,7 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 // Create fk FK_petqr_collars_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
 dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
@@ -471,6 +484,7 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 // Create fk FK_petqr_collars_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
 dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
@@ -482,6 +496,7 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 // Create fk FK_petqr_collars_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
 dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
@@ -493,6 +508,7 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 // Create fk FK_petqr_collars_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
 dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
@@ -504,6 +520,7 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 // Create fk FK_petqr_collars_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_petqr_collars_files' ");
 dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 
@@ -574,6 +591,7 @@ dump("FK_petqr_collars_files exists", $exists, gettype($exists));
 
 // Create fk FK_users_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
 dump("FK_users_files exists", $exists, gettype($exists));
 
 
@@ -585,6 +603,7 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 // Create fk FK_users_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
 dump("FK_users_files exists", $exists, gettype($exists));
 
 
@@ -596,6 +615,7 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 // Create fk FK_users_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
 dump("FK_users_files exists", $exists, gettype($exists));
 
 
@@ -607,6 +627,7 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 // Create fk FK_users_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
 dump("FK_users_files exists", $exists, gettype($exists));
 
 
@@ -618,6 +639,7 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 // Create fk FK_users_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
 dump("FK_users_files exists", $exists, gettype($exists));
 
 
@@ -629,6 +651,7 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 // Create fk FK_users_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
 dump("FK_users_files exists", $exists, gettype($exists));
 
 
@@ -640,6 +663,7 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 // Create fk FK_users_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
 dump("FK_users_files exists", $exists, gettype($exists));
 
 
@@ -651,6 +675,7 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 // Create fk FK_users_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
 dump("FK_users_files exists", $exists, gettype($exists));
 
 
@@ -662,4 +687,5 @@ dump("FK_users_files exists", $exists, gettype($exists));
 
 // Create fk FK_users_files
 $exists = collect(\DB::select("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' "))->first();
+dump("SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petqr' AND CONSTRAINT_NAME='FK_users_files' ");
 dump("FK_users_files exists", $exists, gettype($exists));
