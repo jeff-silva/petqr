@@ -15,10 +15,8 @@ class AppDbSchema extends AppBase
         $database = env('DB_DATABASE');
 
         $schema_php = ['<?php', ''];
-        $schema_php[] = '// File generated in '. date('Y-m-d H:i:s');
 
         $schema_sql = [];
-        $schema_sql[] = '-- File generated in '. date('Y-m-d H:i:s');
         $schema_sql[] = '-- SET FOREIGN_KEY_CHECKS=0;';
         $schema_sql[] = '-- SET GLOBAL FOREIGN_KEY_CHECKS=0;';
         foreach($this->getTables() as $table) {
@@ -59,9 +57,9 @@ class AppDbSchema extends AppBase
                         $schema_php[] = "// Create fk {$const_name}";
                         $schema_php[] = "\$exists = collect(\DB::select(\"SELECT * FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='{$database}' AND CONSTRAINT_NAME='{$const_name}' \"))->first();";
                         $schema_php[] = "dump(\"{$const_name} exists\", \$exists);";
-                        // $schema_php[] = "if (! \$exists) {";
-                        // $schema_php[] = "\t\DB::select(\"ALTER TABLE `{$table->Name}` ADD {$const_sql}\");";
-                        // $schema_php[] = "}";
+                        $schema_php[] = "if (\$exists==null) {";
+                        $schema_php[] = "\t\DB::select(\"ALTER TABLE `{$table->Name}` ADD {$const_sql}\");";
+                        $schema_php[] = "}";
                     }
                 }
             }
