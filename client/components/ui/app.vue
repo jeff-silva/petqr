@@ -35,7 +35,7 @@
                         </div>
                     </div>
 
-                    <div class="ui-app-vrow-body ui-app-scroll ui-app-bg-content p-4">
+                    <div class="ui-app-vrow-body ui-app-scroll ui-app-bg-content p-0 p-md-4">
                         <div class="bg-white p-3 mb-3 fw-bold text-uppercase">{{ headTitle }}</div>
                         <slot name="content"></slot>
                     </div>
@@ -91,6 +91,20 @@ export default {
             drawer: false,
             headTitle: document.title,
         };
+    },
+
+    methods: {
+        drawerToggle() {
+            this.drawer = !this.drawer;
+        },
+
+        drawerOpen() {
+            this.drawer = true;
+        },
+
+        drawerClose() {
+            this.drawer = false;
+        },
     },
 }
 </script>

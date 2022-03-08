@@ -5,7 +5,7 @@
         #default="{loading, error, errorFields}"
         @success="onSuccess"
     >
-        <div class="bg-white p-3 shadow-sm">
+        <div class="ui-model-edit-fields bg-white p-3 shadow-sm">
             <el-collapse-transition>
                 <div class="alert alert-danger" v-if="error">
                     <a href="javascript:;" class="float-end text-danger fw-bold" @click="error=false">
@@ -18,7 +18,7 @@
             <slot :value="props.value" :loading="loading" :error="error" :errorFields="errorFields"></slot>
         </div>
 
-        <div class="text-end mt-3 p-3 bg-white shadow-sm" v-if="showActions">
+        <div class="ui-model-edit-actions text-end mt-3 p-1 p-md-3 bg-white shadow-sm" v-if="showActions">
             <slot name="actions"></slot>
 
             <nuxt-link :to="`/admin/${modelName}/new`" class="btn btn-light" v-if="props.value.id">
@@ -122,3 +122,25 @@ export default {
     },
 }
 </script>
+
+
+<style>
+@media (max-width: 768px) {
+    .ui-model-edit-fields {
+        margin-bottom: 50px;
+    }
+
+    .ui-model-edit-actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+    }
+
+    .ui-model-edit-actions > .btn {
+        flex-basis: 100%;
+        text-align: center;
+    }
+}
+</style>

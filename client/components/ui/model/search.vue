@@ -45,35 +45,46 @@
             </div>
     
             <div class="col-12 col-md-3">
-                <div class="bg-white shadow-sm p-3" style="position:sticky; top:0;">
-                    <div class="ui-model-search-search-fields mb-4">
-                        <div class="input-group form-control p-0">
-                            <input type="text" class="form-control border-0 bg-transparent" :placeholder="`Buscar ${plural}`" v-model="searchParams.q">
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn border-0 bg-transparent shadow-none" v-loading="loading">
-                                    <i class="fas fa-fw fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-    
-                        <select class="form-control" v-model="searchParams.deleted" @change="submit()">
-                            <option value="">Ativos</option>
-                            <option value="1">Deletados</option>
-                        </select>
-    
-                        <slot name="search-fields"></slot>
-                    </div>
-        
-                    <button type="submit" class="btn btn-primary shadow-none w-100" v-loading="loading">
-                        <i class="fas fa-fw fa-search"></i> Buscar
+                <div class="p-2 d-md-none">
+                    <button type="button" class="btn btn-primary w-100" @click="mobileSearchParamsModal=true">
+                        Filtros
                     </button>
-    
-                    <button type="button" class="btn shadow-none w-100 mt-2" @click="searchParams=searchParamsDefault(); submit().then(resp => searchParamsUrl())">
-                        <i class="fas fa-fw fa-times"></i> Limpar
-                    </button>
-
-                    <slot name="search-actions"></slot>
                 </div>
+
+                <div class="ui-model-search-params-modal" :class="{'ui-model-search-params-modal-show':mobileSearchParamsModal}" @click.self="mobileSearchParamsModal=false">
+                    <div class="ui-model-search-params-modal-content">
+                        <div class="bg-white shadow-sm p-3" style="position:sticky; top:0;">
+                            <div class="ui-model-search-search-fields mb-4">
+                                <div class="input-group form-control p-0">
+                                    <input type="text" class="form-control border-0 bg-transparent" :placeholder="`Buscar ${plural}`" v-model="searchParams.q">
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn border-0 bg-transparent shadow-none" v-loading="loading">
+                                            <i class="fas fa-fw fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+            
+                                <select class="form-control" v-model="searchParams.deleted" @change="submit()">
+                                    <option value="">Ativos</option>
+                                    <option value="1">Deletados</option>
+                                </select>
+            
+                                <slot name="search-fields"></slot>
+                            </div>
+                
+                            <button type="submit" class="btn btn-primary shadow-none w-100" v-loading="loading">
+                                <i class="fas fa-fw fa-search"></i> Buscar
+                            </button>
+            
+                            <button type="button" class="btn shadow-none w-100 mt-2" @click="searchParams=searchParamsDefault(); submit().then(resp => searchParamsUrl())">
+                                <i class="fas fa-fw fa-times"></i> Limpar
+                            </button>
+        
+                            <slot name="search-actions"></slot>
+                        </div>
+                    </div>
+                </div>
+
             </div>
     
             <div class="col-12 col-md-9 pt-3 pt-md-0 ps-md-3">
@@ -112,23 +123,27 @@
                                 </slot>
     
                                 <td class="text-end">
-                                    <div class="ui-model-search-table-actions">
-                                        <slot name="table-actions" :item="i"></slot>
-                                        
-                                        <slot name="table-actions-default" :item="i">
-                                            <nuxt-link :to="`/admin/${modelName}/${i.id}`" class="btn btn-primary" v-if="actionsDefault">
-                                                <i class="fas fa-fw fa-pen"></i>
-                                            </nuxt-link>
-
-                                            <button type="button" class="btn btn-success" @click="modelRestore(i.id)" v-if="actionsDefault && i.deleted_at">
-                                                <i class="fas fa-fw fa-undo"></i>
-                                            </button>
-            
-                                            <button type="button" class="btn btn-danger" @click="modelDelete(i.id)" v-if="actionsDefault && !i.deleted_at">
-                                                <i class="fas fa-fw fa-times"></i>
-                                            </button>
-                                        </slot>
-                                    </div>
+                                    <ui-mobile-action>
+                                        <div class="ui-model-search-table-actions">
+                                            <div class="ui-model-search-table-actions-content">
+                                                <slot name="table-actions" :item="i"></slot>
+                                                
+                                                <slot name="table-actions-default" :item="i">
+                                                    <nuxt-link :to="`/admin/${modelName}/${i.id}`" class="btn btn-primary" v-if="actionsDefault">
+                                                        <i class="fas fa-fw fa-pen"></i>
+                                                    </nuxt-link>
+        
+                                                    <button type="button" class="btn btn-success" @click="modelRestore(i.id)" v-if="actionsDefault && i.deleted_at">
+                                                        <i class="fas fa-fw fa-undo"></i>
+                                                    </button>
+                    
+                                                    <button type="button" class="btn btn-danger" @click="modelDelete(i.id)" v-if="actionsDefault && !i.deleted_at">
+                                                        <i class="fas fa-fw fa-times"></i>
+                                                    </button>
+                                                </slot>
+                                            </div>
+                                        </div>
+                                    </ui-mobile-action>
                                 </td>
                             </tr>
                         </tbody>
@@ -169,12 +184,14 @@ export default {
         return {
             searchParams: this.searchParamsDefault(this.$route.query),
             selecteds: [],
+            mobileSearchParamsModal: false,
         };
     },
 
     methods: {
         submit() {
             return new Promise((resolve, reject) => {
+                this.mobileSearchParamsModal = false;
                 setTimeout(() => {
                     this.selecteds = [];
                     this.$refs.search.submit().then(resp => {
@@ -276,7 +293,39 @@ export default {
 </script>
 
 <style>
-.ui-model-search-table-actions .btn {padding: 4px 6px; margin:0;}
+@media (min-width: 0) and (max-width: 768px) {
+    .ui-model-search-table-actions-content .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .ui-model-search-table-actions {
+        position: relative;
+        transition: all 300ms ease;
+        visibility: hidden;
+        opacity: 0;
+    }
+    
+    .ui-model-search tr:hover .ui-model-search-table-actions {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+    .ui-model-search-table-actions-content {
+        position: absolute;
+        top: -10px;
+        right: 0;
+        white-space: nowrap;
+    }
+
+    .ui-model-search-table-actions-content .btn {
+        padding: 10px 12px;
+        border-radius: 50%;
+    }
+}
+
 
 .ui-model-search-header-actions > * {
     margin-left: 10px;
@@ -289,4 +338,38 @@ export default {
 .ui-model-search [data-orderby] {cursor:pointer;}
 .ui-model-search [data-order="asc"]:after {content: "↓"; float: right;}
 .ui-model-search [data-order="desc"]:after {content: "↑"; float: right;}
+
+@media (max-width: 768px) {
+    .ui-model-search-params-modal {
+        visibility: hidden;
+        opacity: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #00000022;
+        z-index: -1;
+        transition: all 300ms ease;
+    }
+    
+    .ui-model-search-params-modal-show {
+        visibility: visible;
+        opacity: 1;
+        z-index: 9;
+    }
+    
+    .ui-model-search-params-modal-content {
+        position: absolute;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        transition: all 300ms ease;
+    }
+    
+    .ui-model-search-params-modal-show .ui-model-search-params-modal-content {
+        top: 0;
+    }
+}
 </style>

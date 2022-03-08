@@ -12,8 +12,7 @@ class AppDeploy extends AppBase
     protected $description = 'Deploy da aplicação';
 
     public function handle() {
-        $this->call('migrate');
+        $this->call('app:install');
         include database_path('schema.php');
-        $this->call('db:seed');
     }
 }

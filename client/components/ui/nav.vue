@@ -77,6 +77,7 @@ export default {
             this.$emit('value', this.propsValue);
             this.$emit('input', this.propsValue);
             this.$emit('change', this.propsValue);
+            this.$emit('select', ev);
         },
     },
 }

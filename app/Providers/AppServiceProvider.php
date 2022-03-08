@@ -13,8 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        ini_set('post_max_size', '1024M');
-        ini_set('upload_max_filesize', '1024M');
+        // 
     }
 
     /**
@@ -24,7 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (! \Schema::hasTable('settings')) return;
-        config(\App\Models\Settings::getAll());
+        if (\Schema::hasTable('settings')) {
+            config(\App\Models\Settings::getAll());
+        }
     }
 }
