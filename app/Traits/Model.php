@@ -34,7 +34,7 @@ trait Model
 
 
     public function slugify() {
-        return \Str::slug($this->name) .'-'. substr(uniqid(), -5);
+        return \Str::slug($this->name);
     }
 
 

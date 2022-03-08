@@ -18,7 +18,7 @@
             <slot :value="props.value" :loading="loading" :error="error" :errorFields="errorFields"></slot>
         </div>
 
-        <div class="ui-model-edit-actions text-end mt-3 p-1 p-md-3 bg-white shadow-sm" v-if="showActions">
+        <div class="ui-model-edit-actions text-end bg-white shadow-sm py-2 mt-md-3 p-md-3" v-if="showActions">
             <slot name="actions"></slot>
 
             <nuxt-link :to="`/admin/${modelName}/new`" class="btn btn-light" v-if="props.value.id">
@@ -141,6 +141,8 @@ export default {
     .ui-model-edit-actions > .btn {
         flex-basis: 100%;
         text-align: center;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 }
 </style>

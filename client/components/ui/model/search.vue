@@ -8,83 +8,86 @@
         class="ui-model-search"
     >
         <div class="row g-0">
-            <div class="col-12 pb-3 text-end">
-                <div class="ui-model-search-header-actions d-flex align-items-center justify-content-end">
-                    <slot name="header-actions"></slot>
-    
-                    <transition name="el-fade-in-linear">
-                        <a href="javascript:;" class="btn btn-danger" v-if="selecteds.length && !searchParams.deleted" @click="modelDelete(selecteds)">
-                            <i class="fas fa-times me-1"></i> Deletar {{ selecteds.length }}
-                        </a>
-                    </transition>
+            <div class="col-12 pb-3 px-2">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1 d-md-none pe-2">
+                        <button type="button" class="btn btn-light w-100" @click="$refs.searchForm.show()">
+                            Filtro
+                        </button>
+                    </div>
 
-                    <transition name="el-fade-in-linear">
-                        <a href="javascript:;" class="btn btn-success" v-if="selecteds.length && searchParams.deleted" @click="modelRestore(selecteds)">
-                            <i class="fas fa-times me-1"></i> Restaurar {{ selecteds.length }}
-                        </a>
-                    </transition>
-    
-                    <el-dropdown trigger="click">
-                        <a href="javascript:;" class="btn btn-success">
-                            <i class="fas fa-download me-1"></i> Exportar
-                        </a>
-    
-                        <el-dropdown-menu>
-                            <div style="width:150px;">
-                                <a href="javascript:;" class="d-block p-2" @click="downloadExport('csv')">CSV</a>
-                                <a href="javascript:;" class="d-block p-2" @click="downloadExport('json')">JSON</a>
-                                <a href="javascript:;" class="d-block p-2" @click="downloadExport('html')">HTML</a>
-                            </div>
-                        </el-dropdown-menu>
-                    </el-dropdown>
-    
-                    <nuxt-link :to="`/admin/${modelName}/new`" class="btn btn-primary" v-if="actionsDefault">
-                        <i class="fas fa-fw fa-plus me-1"></i> Novo
-                    </nuxt-link>
+                    <div class="flex-grow-1 d-none d-md-block">
+                        &nbsp;
+                    </div>
+                    
+                    <ui-mobile-action>
+                        <slot name="header-actions"></slot>
+        
+                        <transition name="el-fade-in-linear">
+                            <a href="javascript:;" class="btn btn-danger" v-if="selecteds.length && !searchParams.deleted" @click="modelDelete(selecteds)">
+                                <i class="fas fa-times me-1"></i> Deletar {{ selecteds.length }}
+                            </a>
+                        </transition>
+        
+                        <transition name="el-fade-in-linear">
+                            <a href="javascript:;" class="btn btn-success" v-if="selecteds.length && searchParams.deleted" @click="modelRestore(selecteds)">
+                                <i class="fas fa-times me-1"></i> Restaurar {{ selecteds.length }}
+                            </a>
+                        </transition>
+        
+                        <el-dropdown trigger="click">
+                            <a href="javascript:;" class="btn btn-success">
+                                <i class="fas fa-download me-1"></i> Exportar
+                            </a>
+        
+                            <el-dropdown-menu>
+                                <div style="width:150px;">
+                                    <a href="javascript:;" class="d-block p-2" @click="downloadExport('csv')">CSV</a>
+                                    <a href="javascript:;" class="d-block p-2" @click="downloadExport('json')">JSON</a>
+                                    <a href="javascript:;" class="d-block p-2" @click="downloadExport('html')">HTML</a>
+                                </div>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+        
+                        <nuxt-link :to="`/admin/${modelName}/new`" class="btn btn-primary" v-if="actionsDefault">
+                            <i class="fas fa-fw fa-plus me-1"></i> Novo
+                        </nuxt-link>
+                    </ui-mobile-action>
                 </div>
+
             </div>
     
             <div class="col-12 col-md-3">
-                <div class="p-2 d-md-none">
-                    <button type="button" class="btn btn-primary w-100" @click="mobileSearchParamsModal=true">
-                        Filtros
-                    </button>
-                </div>
-
-                <div class="ui-model-search-params-modal" :class="{'ui-model-search-params-modal-show':mobileSearchParamsModal}" @click.self="mobileSearchParamsModal=false">
-                    <div class="ui-model-search-params-modal-content">
-                        <div class="bg-white shadow-sm p-3" style="position:sticky; top:0;">
-                            <div class="ui-model-search-search-fields mb-4">
-                                <div class="input-group form-control p-0">
-                                    <input type="text" class="form-control border-0 bg-transparent" :placeholder="`Buscar ${plural}`" v-model="searchParams.q">
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn border-0 bg-transparent shadow-none" v-loading="loading">
-                                            <i class="fas fa-fw fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-            
-                                <select class="form-control" v-model="searchParams.deleted" @change="submit()">
-                                    <option value="">Ativos</option>
-                                    <option value="1">Deletados</option>
-                                </select>
-            
-                                <slot name="search-fields"></slot>
+                <ui-mobile-action :slot-button="false" ref="searchForm">
+                    
+                    <div class="ui-model-search-search-fields mb-4">
+                        <div class="input-group form-control p-0">
+                            <input type="text" class="form-control border-0 bg-transparent" :placeholder="`Buscar ${plural}`" v-model="searchParams.q">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn border-0 bg-transparent shadow-none" v-loading="loading">
+                                    <i class="fas fa-fw fa-search"></i>
+                                </button>
                             </div>
-                
-                            <button type="submit" class="btn btn-primary shadow-none w-100" v-loading="loading">
-                                <i class="fas fa-fw fa-search"></i> Buscar
-                            </button>
-            
-                            <button type="button" class="btn shadow-none w-100 mt-2" @click="searchParams=searchParamsDefault(); submit().then(resp => searchParamsUrl())">
-                                <i class="fas fa-fw fa-times"></i> Limpar
-                            </button>
-        
-                            <slot name="search-actions"></slot>
                         </div>
+    
+                        <select class="form-control" v-model="searchParams.deleted" @change="submit()">
+                            <option value="">Ativos</option>
+                            <option value="1">Deletados</option>
+                        </select>
+    
+                        <slot name="search-fields"></slot>
                     </div>
-                </div>
-
+        
+                    <button type="submit" class="btn btn-primary shadow-none w-100" v-loading="loading">
+                        <i class="fas fa-fw fa-search"></i> Buscar
+                    </button>
+    
+                    <button type="button" class="btn shadow-none w-100 mt-2" @click="searchParams=searchParamsDefault(); submit().then(resp => searchParamsUrl())">
+                        <i class="fas fa-fw fa-times"></i> Limpar
+                    </button>
+    
+                    <slot name="search-actions"></slot>
+                </ui-mobile-action>
             </div>
     
             <div class="col-12 col-md-9 pt-3 pt-md-0 ps-md-3">
@@ -293,6 +296,7 @@ export default {
 </script>
 
 <style>
+/* Mobile actions */
 @media (min-width: 0) and (max-width: 768px) {
     .ui-model-search-table-actions-content .btn {
         width: 100%;
@@ -300,6 +304,7 @@ export default {
     }
 }
 
+/* Desktop actions */
 @media (min-width: 768px) {
     .ui-model-search-table-actions {
         position: relative;
@@ -315,21 +320,18 @@ export default {
     
     .ui-model-search-table-actions-content {
         position: absolute;
-        top: -10px;
+        top: -22px;
         right: 0;
         white-space: nowrap;
     }
 
     .ui-model-search-table-actions-content .btn {
-        padding: 10px 12px;
+        padding: 6px 8px;
         border-radius: 50%;
+        margin-left: 5px;
     }
 }
 
-
-.ui-model-search-header-actions > * {
-    margin-left: 10px;
-}
 
 .ui-model-search-search-fields > * {
     margin-bottom: 15px;
@@ -338,38 +340,4 @@ export default {
 .ui-model-search [data-orderby] {cursor:pointer;}
 .ui-model-search [data-order="asc"]:after {content: "↓"; float: right;}
 .ui-model-search [data-order="desc"]:after {content: "↑"; float: right;}
-
-@media (max-width: 768px) {
-    .ui-model-search-params-modal {
-        visibility: hidden;
-        opacity: 0;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: #00000022;
-        z-index: -1;
-        transition: all 300ms ease;
-    }
-    
-    .ui-model-search-params-modal-show {
-        visibility: visible;
-        opacity: 1;
-        z-index: 9;
-    }
-    
-    .ui-model-search-params-modal-content {
-        position: absolute;
-        top: -100%;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        transition: all 300ms ease;
-    }
-    
-    .ui-model-search-params-modal-show .ui-model-search-params-modal-content {
-        top: 0;
-    }
-}
 </style>
