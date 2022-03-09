@@ -14,10 +14,13 @@ class AppDbSchema extends AppBase
     public function handle() {
         $schema_php = ['<?php', ''];
         $schema_php[] = "\$database = env('DB_DATABASE');";
+        $schema_php[] = '';
+        $schema_php[] = "\DB::select('SET FOREIGN_KEY_CHECKS=0;')";
+        $schema_php[] = "\DB::select('SET GLOBAL FOREIGN_KEY_CHECKS=0;')";
 
         $schema_sql = [];
-        $schema_sql[] = '-- SET FOREIGN_KEY_CHECKS=0;';
-        $schema_sql[] = '-- SET GLOBAL FOREIGN_KEY_CHECKS=0;';
+        $schema_sql[] = 'SET FOREIGN_KEY_CHECKS=0;';
+        $schema_sql[] = 'SET GLOBAL FOREIGN_KEY_CHECKS=0;';
         foreach($this->getTables() as $table) {
             $sql_create = collect( \DB::select("SHOW CREATE table {$table->Name};") )->pluck('Create Table')->first();
             $sql_create = str_replace('CREATE TABLE', 'CREATE TABLE IF NOT EXISTS', $sql_create);
