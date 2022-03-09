@@ -15,8 +15,8 @@ class AppDbSchema extends AppBase
         $schema_php = ['<?php', ''];
         $schema_php[] = "\$database = env('DB_DATABASE');";
         $schema_php[] = '';
-        $schema_php[] = "\DB::select('SET FOREIGN_KEY_CHECKS=0;')";
-        $schema_php[] = "\DB::select('SET GLOBAL FOREIGN_KEY_CHECKS=0;')";
+        $schema_php[] = "\DB::select('SET FOREIGN_KEY_CHECKS=0;');";
+        $schema_php[] = "\DB::select('SET GLOBAL FOREIGN_KEY_CHECKS=0;');";
 
         $schema_sql = [];
         $schema_sql[] = 'SET FOREIGN_KEY_CHECKS=0;';
