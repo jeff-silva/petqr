@@ -2,8 +2,8 @@
 
 $database = env('DB_DATABASE');
 
-\DB::select('SET FOREIGN_KEY_CHECKS=0;');
-\DB::select('SET GLOBAL FOREIGN_KEY_CHECKS=0;');
+// \DB::select('SET FOREIGN_KEY_CHECKS=0;');
+// \DB::select('SET GLOBAL FOREIGN_KEY_CHECKS=0;');
 
 
 // Create table failed_jobs
